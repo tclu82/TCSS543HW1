@@ -15,22 +15,22 @@ public class TCSS543HW1StableMatching {
     private static final String[] HOSPITAL3_LIST = {"Dennis", "Mac", "Charlie", "Frank"};
     private static final String[] HOSPITAL4_LIST = {"Charlie", "Dennis", "Frank", "Mac"};
 
-    private Set<String> menSet;
-    private Set<String> womenSet;
+    private Set<String> studentSet;
+    private Set<String> hospitalSet;
     private Map<String, List<String>> preferenceMap;
     private Map<String, Person> pairMap;
 
     public TCSS543HW1StableMatching() {
-        menSet = new HashSet<>();
-        womenSet = new HashSet<>();
+        studentSet = new HashSet<>();
+        hospitalSet = new HashSet<>();
         pairMap = new HashMap<>();
 
         for (String man: STUDENT_LIST) {
-            menSet.add(man);
+            studentSet.add(man);
             pairMap.put(man, new Person(man));
         }
         for (String woman: HOSPITAL_LIST) {
-            womenSet.add(woman);
+            hospitalSet.add(woman);
             pairMap.put(woman, new Person(woman));
         }
         preferenceMap = setPreferenceMap();
@@ -38,7 +38,7 @@ public class TCSS543HW1StableMatching {
 
     public static void main(String... theArgs) {
         TCSS543HW1StableMatching matches = new TCSS543HW1StableMatching();
-        Set<Person> result = matches.propose(matches.menSet);
+        Set<Person> result = matches.propose(matches.hospitalSet);
         System.out.println(result);
     }
 
@@ -82,7 +82,7 @@ public class TCSS543HW1StableMatching {
     }
 
     private Set<Person> propose(Set<String> proposerSet) {
-        if (menSet.size() != womenSet.size()) {
+        if (studentSet.size() != hospitalSet.size()) {
             return null;
         }
         Set<Person> result = new HashSet<>();
