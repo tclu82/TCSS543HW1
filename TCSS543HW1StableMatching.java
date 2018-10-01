@@ -55,11 +55,27 @@ public class TCSS543HW1StableMatching {
      */
     public static void main(String... theArgs) {
         TCSS543HW1StableMatching matches = new TCSS543HW1StableMatching();
-        Set<Proposer> result = matches.propose(matches.studentSet);
-//        Set<Proposer> result = matches.propose(matches.hospitalSet);
+        System.out.println("Choose 1 if assign students to hospital");
+        System.out.println("Choose 2 if assign hospital to student");
+        Scanner scanner = new Scanner(System.in);
+        int option = scanner.nextInt();
+
+        while (1 > option || option > 2) {
+            System.out.println("\nInvalid input");
+            System.out.println("Choose 1 if assign students to hospital");
+            System.out.println("Choose 2 if assign hospital to student");
+            option = scanner.nextInt();
+        }
+
+        Set<Proposer> result = matches.propose(option == 1 ? matches.hospitalSet : matches.studentSet);
         System.out.println(result);
     }
 
+    /**
+     * Build a map of preference for each proposer
+     *
+     * @return Map<String, List<String>>
+     */
     private Map<String, List<String>> setPreferenceMap() {
         Map<String, List<String>> map = new HashMap<>();
 
@@ -99,6 +115,12 @@ public class TCSS543HW1StableMatching {
         return map;
     }
 
+    /**
+     * Proposer set propse to target set
+     *
+     * @param proposerSet
+     * @return
+     */
     private Set<Proposer> propose(Set<String> proposerSet) {
         if (studentSet.size() != hospitalSet.size()) {
             return null;
