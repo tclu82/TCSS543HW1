@@ -1,5 +1,11 @@
 import java.util.*;
 
+/**
+ * HW1
+ *
+ * It has hard coded 4 students and 4 hospitals, each hospital and student has its own preference.
+ *
+ */
 public class TCSS543HW1StableMatching {
 
     // Student list and hosiptal list, both list must have same size to fit the stable matching
